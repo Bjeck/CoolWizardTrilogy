@@ -6,13 +6,27 @@ public class SpellManager : MonoBehaviour {
 
     List<Card> allCards = new List<Card>();
     List<Card> yourCards = new List<Card>();
-    List<Spell> spells = new List<Spell>();
+    
 
 	public bool DoSpell(List<Card> cardsUsed)
     {
-        if(true)
-        {
+        List<Card> cardCombination = new List<Card>();
 
+        while (true)
+        {
+            bool found = false;
+
+            foreach(Card card in allCards)
+            {
+                List<Card> cardsToCombine = new List<Card>();
+                if (false)
+                {
+                    found = true;
+                }
+            }
+
+            if (!found)
+                break;
         }
 
         return true;
