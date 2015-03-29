@@ -12,6 +12,8 @@ public class cameraScript : MonoBehaviour {
 	public float LerpspeedModifier = 0.05f;
 	public float camXThreshold = 2f;
 	public float camZThreshold = 2f;
+	float horiz;
+	float verti;
 
 	// Use this for initialization
 	void Start () {
@@ -23,20 +25,20 @@ public class cameraScript : MonoBehaviour {
 
 		cameraPos = player.transform.position;
 
-		cameraPos.x += Input.GetAxis ("Horizontal") * camSpeed;
-		cameraPos.z += Input.GetAxis ("Vertical") * camSpeed;
+		horiz = Input.GetAxis ("Horizontal") * camSpeed;
+		verti = Input.GetAxis ("Vertical") * camSpeed;
+		cameraPos.x += horiz;
+		cameraPos.z += verti;
 
 		LerpSpeed = LerpspeedModifier;
 		LerpSpeed *= Vector3.Distance (cameraPos, transform.position);
-
-		//Debug.Log (LerpSpeed+"    "+Vector3.Distance (cameraPos, transform.position));
-
 		cameraPos.y += camHeight;
 		cameraPos.z += camXOffSet;
 
-		transform.position = new Vector3(Mathf.Lerp(transform.position.x,cameraPos.x,LerpSpeed),
-		                                 Mathf.Lerp(transform.position.y,cameraPos.y,LerpSpeed),
-		                                 Mathf.Lerp(transform.position.z,cameraPos.z,LerpSpeed));
+		transform.position = new Vector3 (Mathf.Lerp (transform.position.x, cameraPos.x, LerpSpeed),
+		                                 Mathf.Lerp (transform.position.y, cameraPos.y, LerpSpeed),
+		                                 Mathf.Lerp (transform.position.z, cameraPos.z, LerpSpeed));
+
 	
 	}
 }
