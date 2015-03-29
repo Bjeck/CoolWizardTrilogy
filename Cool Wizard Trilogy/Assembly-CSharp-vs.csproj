@@ -39,6 +39,21 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
+<<<<<<< HEAD
+	  <HintPath>C:/Program Files/Unity5_0/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files/Unity5_0/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Scripts\SpellScripts\Card.cs" />
+     <Compile Include="Assets\Scripts\SpellScripts\Spell.cs" />
+     <Compile Include="Assets\Scripts\SpellScripts\SpellManager.cs" />
+     <Compile Include="Assets\Scripts\UI\Spells\SpellUIManager.cs" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity5_0/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+=======
 	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
@@ -53,6 +68,7 @@
      <None Include="Assets\Shaders\DISPLACEMENTTESTING.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+>>>>>>> eae48b8472627da589f5d14b4a9f7c1b36279589
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
