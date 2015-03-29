@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CRTshaderScript.cs" />
+     <Compile Include="Assets\Scripts\ShaderControlFloorScript.cs" />
      <Compile Include="Assets\Scripts\ShaderControlObjectScript.cs" />
      <Compile Include="Assets\Scripts\SpellScripts\Card.cs" />
      <Compile Include="Assets\Scripts\SpellScripts\SpellManager.cs" />
@@ -53,7 +55,9 @@
      <Compile Include="Assets\Scripts\cameraScript.cs" />
      <Compile Include="Assets\Scripts\playerMovement.cs" />
      <Compile Include="Assets\Scripts\wizardVisionControlScript.cs" />
-     <None Include="Assets\Shaders\DISPLACEMENTTESTING.shader" />
+     <None Include="Assets\Shaders\FuckedupShader.shader" />
+     <None Include="Assets\Shaders\crttest.shader" />
+     <None Include="Assets\Shaders\FuckedupFloorShader.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

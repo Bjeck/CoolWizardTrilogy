@@ -14,10 +14,13 @@ public class wizardVisionControlScript : MonoBehaviour {
 
 	public Shader wizardVisionShader;
 	public Shader normalShader;
+	public Shader floorShader;
 	public bool shouldSwitch = false;
 	public bool randomizeEverything = false;
 	float ridiculousTimer = 0f;
 	float dispValGoal;
+
+	//public AudioSource sound;
 
 	// Use this for initialization
 	void Start () {
@@ -52,7 +55,8 @@ public class wizardVisionControlScript : MonoBehaviour {
 
 		if (randomizeEverything) {
 			if(ridiculousTimer <= 0){
-				dispValGoal = Random.Range(-0.1f,1f);
+				Camera.main.GetComponent<CRTshaderScript> ().enabled = false;
+				dispValGoal = Random.Range(0.0f,1f);
 
 				mode = Random.Range(0,4);
 				if(mode == 2){
@@ -61,6 +65,16 @@ public class wizardVisionControlScript : MonoBehaviour {
 				else{
 					ridiculousTimer = Random.Range(0.5f,2f);
 				}
+
+				int CRTDecider = Random.Range(0,4);
+				if(CRTDecider == 0){
+					Camera.main.GetComponent<CRTshaderScript> ().enabled = true;
+				}
+
+				//sound.Stop ();
+				//sound.pitch = 1; sound.pitch += Random.Range(-0.2f,0.2f);
+				//sound.Play ();
+
 			}
 			else{
 				dispVal = Mathf.Lerp(dispVal,dispValGoal,0.01f);
@@ -68,10 +82,10 @@ public class wizardVisionControlScript : MonoBehaviour {
 				ridiculousTimer -= Time.deltaTime;
 			}
 
-
 			xVal = Random.Range(-1f,1f);
 			yVal = Random.Range(-1f,1f);
 			zVal = Random.Range(-1f,1f);
+
 		}
 
 	}
@@ -88,6 +102,7 @@ public class wizardVisionControlScript : MonoBehaviour {
 		mode = 3;
 		ridiculousTimer = 0f;
 		randomizeEverything = true;
+
 	}
 
 	public void DeactivateWizardVision(){
@@ -97,6 +112,8 @@ public class wizardVisionControlScript : MonoBehaviour {
 		yVal = 0;
 		zVal = 0;
 		randomizeEverything = false;
+		Camera.main.GetComponent<CRTshaderScript> ().enabled = false;
+		//sound.Stop();
 
 	}
 

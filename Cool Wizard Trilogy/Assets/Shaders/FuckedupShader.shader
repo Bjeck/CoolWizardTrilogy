@@ -140,7 +140,7 @@
             //	output.pos = mul(clipMatrix,mover);
             }
            
-       		float offsets = cos(0.5*_Time.y)+0.4;
+       		float offsets = cos(1*_Time.y+0)*1+0.5; //float offsets = cos(2*_Time.y)*0.01+0.0;
        		output.col = input.vertex*sin(_Time.z)+offsets;
             
             

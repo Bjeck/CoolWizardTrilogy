@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\wizardVisionControlScript.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Relation-system\Unity\RelationSystem\Assets\ProgramNPCCreation.cs">
     <Files>
-      <File FileName="Assets\Scripts\ShaderControlObjectScript.cs" Line="37" Column="7" />
-      <File FileName="Assets\Scripts\cameraScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\playerMovement.cs" Line="30" Column="31" />
-      <File FileName="Assets\Scripts\wizardVisionControlScript.cs" Line="51" Column="3" />
+      <File FileName="..\..\..\Relation-system\Unity\RelationSystem\Assets\ProgramNPCCreation.cs" Line="428" Column="97" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
