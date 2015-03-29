@@ -30,7 +30,7 @@ public class wizardVisionControlScript : MonoBehaviour {
 
 		if (shouldSwitch) {
 			shouldSwitch = false;
-			Debug.Log ("shouldswitch reset");
+			//Debug.Log ("shouldswitch reset");
 		}
 
 		if(Input.GetKeyDown(KeyCode.Alpha1)){
@@ -103,7 +103,7 @@ public class wizardVisionControlScript : MonoBehaviour {
 
 		public void ChangeVisionState(){
 			inWizardVision = !inWizardVision;
-			Debug.Log ("Change vision state");
+			//Debug.Log ("Change vision state "+inWizardVision);
 			if(inWizardVision){
 				GoRidiculous();
 			}

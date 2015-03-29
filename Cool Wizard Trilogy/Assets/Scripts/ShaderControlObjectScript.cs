@@ -24,16 +24,17 @@ public class ShaderControlObjectScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		switchShader = wvcScr.shouldSwitch;
+		//Debug.Log (switchShader + "  " + wvcScr.shouldSwitch);
 
 		if (switchShader) {
-			Debug.Log ("switching "+wvcScr.inWizardVision);
+			//Debug.Log ("switching "+wvcScr.inWizardVision);
 			if(wvcScr.inWizardVision){
 				//NON WIZARD SHADER
-				Debug.Log ("Normal Shader");
+				//Debug.Log ("Normal Shader");
 				GetComponent<Renderer>().material.shader = wvcScr.wizardVisionShader;
 			}
 			else{
-				Debug.Log ("Wizard Shader");
+				//Debug.Log ("Wizard Shader");
 				GetComponent<Renderer>().material.shader = wvcScr.normalShader;
 			}
 			switchShader = false;
