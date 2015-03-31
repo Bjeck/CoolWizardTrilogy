@@ -1,10 +1,11 @@
-﻿Shader "DISPLACEMENTOBJECT" {
+﻿Shader "DISPLACEMENTSPELLEFFECT" {
    Properties {
    		_DISPVALUE ("DISP", range(-1,1)) = 0
    		_XPOS ("XPOS", float) = 0
    		_YPOS ("YPOS", float) = 0
    		_ZPOS ("ZPOS", float) = 0
    		_MOVE ("Move", float) = 0
+   		_COLOR ("Color", Color) = (1,1,1,1)
    }
    SubShader {
    
@@ -27,8 +28,7 @@
  		uniform float _YPOS;
  		uniform float _ZPOS;
  		uniform float _MOVE;
- 		uniform bool _COLORBOOL;
- 		
+ 		uniform float4 _COLOR;
  			
          struct vertexInput {
             float4 vertex : POSITION;
@@ -139,7 +139,7 @@
             //	output.pos = mul(clipMatrix,mover);
            
        		//float offsets = cos(1*_Time.y+0)*1+0.5; //float offsets = cos(2*_Time.y)*0.01+0.0;
-       		output.col = float4(1,1,0,1);
+       		output.col = _COLOR;
             
             
             return output;
