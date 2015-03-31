@@ -16,6 +16,7 @@ public class wizardVisionControlScript : MonoBehaviour {
 	public Shader normalShader;
 	public Shader floorShader;
 	public Shader pickupableObjectShader;
+	public Shader enemyShader;
 	public bool shouldSwitch = false;
 	public bool randomizeEverything = false;
 	float ridiculousTimer = 0f;

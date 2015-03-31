@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ShaderScripts\wizardVisionControlScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shaders/FuckedupEnemyShader.shader">
     <Files>
-      <File FileName="Assets\Scripts\Card_Pickupable.cs" Line="15" Column="74" />
-      <File FileName="Assets\Scripts\ShaderScripts\ShaderControlPickupableObjectScript.cs" Line="12" Column="25" />
-      <File FileName="Assets\Shaders\FuckedupPickupableObjectShader.shader" Line="144" Column="39" />
-      <File FileName="Assets\Scripts\ShaderScripts\ShaderControlObjectScript.cs" Line="4" Column="57" />
-      <File FileName="Assets\Scripts\ShaderScripts\wizardVisionControlScript.cs" Line="67" Column="46" />
+      <File FileName="Assets/Scripts/enemyScript.cs" Line="26" Column="47" />
+      <File FileName="Assets/Scripts/Card_Pickupable.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ShaderScripts/ShaderControlFloorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ShaderScripts/wizardVisionControlScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Shaders/FuckedupEnemyShader.shader" Line="144" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
