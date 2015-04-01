@@ -27,9 +27,10 @@ public class playerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		movementVector.x = Input.GetAxis ("Horizontal")*speed;
-		movementVector.z = Input.GetAxis ("Vertical")*speed;
-
+		movementVector.x = Input.GetAxis ("Horizontal");
+		movementVector.z = Input.GetAxis ("Vertical");
+		movementVector = movementVector.normalized;
+		movementVector *= speed;
 		rigbody.velocity = movementVector;
 
         cardClicked = SpellUIManager.instance.cardClicked();

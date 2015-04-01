@@ -8,6 +8,7 @@ public class enemyScript : MonoBehaviour {
 	wizardVisionControlScript wvcScr;
 	GameObject player;
 	Rigidbody rig;
+	public float maxDistToChase;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +24,11 @@ public class enemyScript : MonoBehaviour {
 		canMove = wvcScr.inWizardVision;
 
 		if (canMove) {
-			rig.velocity = player.transform.position - transform.position;
+			float dist = Vector3.Distance(player.transform.position,transform.position);
+			if(dist < maxDistToChase){
+				rig.velocity = player.transform.position - transform.position;
+			}
+
 		}
 	
 	}
