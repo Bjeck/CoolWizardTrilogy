@@ -21,7 +21,6 @@ public class playerMovement : MonoBehaviour {
 	void Start () {
 		rigbody = GetComponent<Rigidbody> ();
 		wvcScr = wizardVisionObj.GetComponent<wizardVisionControlScript> ();
-	
 	}
 	
 	// Update is called once per frame
@@ -39,10 +38,6 @@ public class playerMovement : MonoBehaviour {
 			isTargeting = true;
 		}
 
-
-
-
-
 		if (isTargeting) { //updates the target cursor to mouse position and color to see range.
 			
 			//Vector3 temp = Camera.main.ScreenToWorldPoint (Input.mousePosition);
@@ -56,9 +51,7 @@ public class playerMovement : MonoBehaviour {
 					isTargeting = false;
 				}
 			}
-
 		}
-
 
 
 		if(Input.GetKeyDown(KeyCode.Z)){
@@ -73,5 +66,4 @@ public class playerMovement : MonoBehaviour {
 		target.y = transform.position.y;
 		spellObject.GetComponent<SpellObjectScript> ().dir = (target - spellObject.transform.position).normalized;
 	}
-
 }

@@ -6,25 +6,28 @@ using System.Linq;
 public class SpellManager : MonoBehaviour {
 
 
-    public List<string> names = new List<string>();
-    Dictionary<string, Card> allCards = new Dictionary<string, Card>();
-    Dictionary<string, Card> yourCards = new Dictionary<string, Card>();
+    public Dictionary<string, Card> allCards = new Dictionary<string, Card>();
+    public Dictionary<string, Card> yourCards = new Dictionary<string, Card>();
     Card ChosenSpell;
     public Card chosenSpell{ get{ return ChosenSpell; } }
 
-	public void ChooseSpell(string cardName)
+
+	public void ToggleSpell(string cardName)
     {
-        if(yourCards.ContainsKey(cardName))
+        if(ChosenSpell != null && ChosenSpell.name == cardName)
         {
-            ChosenSpell = yourCards[cardName];
+            ChosenSpell = null;
+        }
+        else
+        {
+            if (yourCards.ContainsKey(cardName))
+            {
+                ChosenSpell = yourCards[cardName];
+            }
         }
     }
 
 
-    public void UnChooseSpell()
-    {
-        ChosenSpell = null;
-    }
 
 
     public void FoundNewCard(string cardName)
@@ -41,12 +44,12 @@ public class SpellManager : MonoBehaviour {
 
     public void MakeAllCards()
     {
-
+        allCards.Add("fire", new Card("fire", 0));
     }
 
 
-    public void SetYourFirstCard()
+    public void SetYourFirstCards()
     {
-
+        FoundNewCard("fire");
     }
 }
