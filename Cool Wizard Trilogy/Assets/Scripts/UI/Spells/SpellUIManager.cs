@@ -33,6 +33,13 @@ public class SpellUIManager : MonoBehaviour {
         }
     }
 
+    public Card cardClicked()
+    {
+
+
+        return null;
+    }
+
 	void Start () {
 	    
 	}

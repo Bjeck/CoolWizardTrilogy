@@ -15,6 +15,7 @@ public class playerMovement : MonoBehaviour {
 	Vector3 spellTarget;
 	GameObject spellObject;
 	public float spellSpeed;
+    Card cardClicked;
 
 	// Use this for initialization
 	void Start () {
@@ -30,12 +31,11 @@ public class playerMovement : MonoBehaviour {
 		movementVector.z = Input.GetAxis ("Vertical")*speed;
 
 		rigbody.velocity = movementVector;
-	
 
+        cardClicked = SpellUIManager.instance.cardClicked();
 
-		if (Input.GetKeyDown (KeyCode.E)) {
+		if (cardClicked != null) {
 			isTargeting = true;
-			//targetCursor.SetActive(true);
 		}
 
 
@@ -53,7 +53,6 @@ public class playerMovement : MonoBehaviour {
 				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 100f)) {
 					CastSpell(hit.point);
 					isTargeting = false;
-
 				}
 			}
 
@@ -75,43 +74,3 @@ public class playerMovement : MonoBehaviour {
 	}
 
 }
-
-/*
- * // Update is called once per frame
-	public void Update () {
-		base.Update ();
-		aMan.isTargetingAbility = isTargeting;
-
-		if (isTargeting) { //updates the target cursor to mouse position and color to see range.
-
-			Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			temp.z = -1f;
-			targetCursor.transform.position = temp;
-
-			dist = Vector3.Distance(targetCursor.transform.position,caster.transform.position); 
-			//Debug.Log(dist);
-			if(dist > range){
-				//Debug.Log("OUT OF RANGE");
-				targetCursor.GetComponent<SpriteRenderer> ().sprite = targetCursorRed;
-			}
-			else {
-				//Debug.Log("IN RANGE: "+targetCursorGreen);
-				targetCursor.GetComponent<SpriteRenderer> ().sprite = targetCursorGreen;
-			}
-
-			if(Input.GetKeyDown(KeyCode.Escape)){
-				StopTargeting();
-			}
-		}
-*/
-
-/*
- * Vector3 mPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-					RaycastHit hit;
-					if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 100f)) { //check if anything is hit.
-						
-						LayerMask layermaskB = (1 << 10);
-						LayerMask layermaskU = (1 << 12);
-						if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 100f, layermaskB)) {	//check if it is a building that was clicked on
-
-*/

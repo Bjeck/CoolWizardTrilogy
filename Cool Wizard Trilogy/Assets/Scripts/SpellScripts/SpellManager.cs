@@ -1,34 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SpellManager : MonoBehaviour {
 
-    List<Card> allCards = new List<Card>();
-    List<Card> yourCards = new List<Card>();
-    
 
-	public bool DoSpell(List<Card> cardsUsed)
+    public List<string> names = new List<string>();
+    Dictionary<string, Card> allCards = new Dictionary<string, Card>();
+    Dictionary<string, Card> yourCards = new Dictionary<string, Card>();
+    Card ChosenSpell;
+    public Card chosenSpell{ get{ return ChosenSpell; } }
+
+	public void ChooseSpell(string cardName)
     {
-        List<Card> cardCombination = new List<Card>();
-
-        while (true)
+        if(yourCards.ContainsKey(cardName))
         {
-            bool found = false;
-
-            foreach(Card card in allCards)
-            {
-                List<Card> cardsToCombine = new List<Card>();
-                if (false)
-                {
-                    found = true;
-                }
-            }
-
-            if (!found)
-                break;
+            ChosenSpell = yourCards[cardName];
         }
+    }
 
-        return true;
+
+    public void UnChooseSpell()
+    {
+        ChosenSpell = null;
+    }
+
+
+    public void FoundNewCard(string cardName)
+    {
+        if(!yourCards.ContainsKey(cardName))
+        {
+            if(allCards.ContainsKey(cardName))
+            {
+                yourCards.Add(cardName, allCards[cardName]);
+            }
+        }
+    }
+
+
+    public void MakeAllCards
+    {
+
+    }
+
+
+    public void SetYourFirstCard()
+    {
+
     }
 }
