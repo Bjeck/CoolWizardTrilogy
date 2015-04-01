@@ -39,7 +39,7 @@ public class SpellManager : MonoBehaviour {
     }
 
 
-    public void MakeAllCards
+    public void MakeAllCards()
     {
 
     }
