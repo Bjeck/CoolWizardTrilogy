@@ -18,15 +18,10 @@ public class SpellUIManager : MonoBehaviour {
 
     public float cardTotalWidthPct = 10;
 
-<<<<<<< HEAD
     public SpellManager manager = new SpellManager();
-=======
-    public float raiseSelectedCardPct = 1;
 
-
-    private SpellManager manager = new SpellManager();
->>>>>>> origin/master
-
+	public float raiseSelectedCardPct = 1;
+	
     private Dictionary<string, GameObject> cards = new Dictionary<string, GameObject>();
 
 
