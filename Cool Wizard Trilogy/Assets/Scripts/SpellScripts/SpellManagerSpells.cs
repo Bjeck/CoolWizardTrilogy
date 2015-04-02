@@ -53,34 +53,48 @@ public partial class SpellManager : MonoBehaviour {
 		if (objectToHit.GetComponent<Rigidbody> () != null) {
 			objectToHit.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 		}
+		if (objectToHit.GetComponent<SpriteRenderer> () != null) {
+			objectToHit.GetComponent<SpriteRenderer> ().material.color = new Color(0f,0f,1f,1f);
+		}
 		//freeze
 	}
 
 	void GiantBomb(GameObject objectToHit){
 		//Destroy object
 		//DROP A BOMB ON IT
-		Destroy (objectToHit);
+		Destroy (objectToHit); 
 	}
 
 
 	void TransformObject(GameObject objectToHit){
 		//transform into somehting else
 		int objectChooser = Random.Range (0, 5);
-		GameObject objectToSpawn;
+		GameObject objectToSpawn = new GameObject();
+		Vector3 pos = objectToHit.transform.position;
 		switch (objectChooser) {
 		case 0:
 			objectToSpawn = (GameObject)Instantiate(Resources.Load("SpellObject",typeof(GameObject)));
+			pos.y = -1;
 			break;
 		case 1:
 			objectToSpawn = (GameObject)Instantiate(Resources.Load("Cube_small",typeof(GameObject)));
 			break;
 		case 2:
 			objectToSpawn = (GameObject)Instantiate(Resources.Load("Enemy",typeof(GameObject)));
+			pos.y = -1;
 			break;
 		case 3:
 			objectToSpawn = (GameObject)Instantiate(Resources.Load("Card_Pickupable",typeof(GameObject)));
+			pos.y = -1;
 			break;
 		}
+		objectToSpawn.transform.position = pos;
+		Destroy (objectToHit);
+	}
+
+	void BlackHole(GameObject objectToHit){
+
+
 	}
 
 	/*

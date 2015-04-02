@@ -8,7 +8,10 @@ public class enemyScript : MonoBehaviour {
 	wizardVisionControlScript wvcScr;
 	GameObject player;
 	Rigidbody rig;
+	public float speed = 6f;
 	public float maxDistToChase;
+	string name;
+	TextMesh nameText;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +19,11 @@ public class enemyScript : MonoBehaviour {
 		wvcScr = wizardControlObj.GetComponent<wizardVisionControlScript> ();
 		player = GameObject.FindGameObjectWithTag ("Player");
 		rig = GetComponent<Rigidbody> ();
-	
+		nameText = GetComponentInChildren<TextMesh> ();
+		//Debug.Log (nameText);
+
+		nameText.text = transform.parent.gameObject.GetComponent<EnemyNameManager> ().GetName ();
+		//Debug.Log (nameText.text);
 	}
 	
 	// Update is called once per frame
@@ -26,11 +33,20 @@ public class enemyScript : MonoBehaviour {
 		if (canMove) {
 			float dist = Vector3.Distance(player.transform.position,transform.position);
 			if(dist < maxDistToChase){
-				rig.velocity = player.transform.position - transform.position;
+				rig.velocity = (player.transform.position - transform.position).normalized*speed;
 			}
 
 		}
 	
 	}
+
+	void OnCollisionEnter(Collision c){
+		if (c.gameObject.tag == "Player") {
+
+			rig.AddForce((transform.position-player.transform.position)*40f,ForceMode.VelocityChange);
+			c.gameObject.GetComponent<Rigidbody>().AddForce((player.transform.position - transform.position)*40f,ForceMode.VelocityChange);
+		}
+	}
+
 
 }

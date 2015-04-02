@@ -18,7 +18,8 @@ public class SpellUIManager : MonoBehaviour {
 
     public float cardTotalWidthPct = 10;
 
-    public SpellManager manager = new SpellManager();
+	[HideInInspector]
+	public SpellManager manager;
 
 	public float raiseSelectedCardPct = 1;
 	
@@ -53,8 +54,10 @@ public class SpellUIManager : MonoBehaviour {
                 Destroy(this.gameObject);
         }
 
-        manager.MakeAllCards();
+		manager = new SpellManager();
+		manager.MakeAllCards();
         manager.SetYourFirstCards();
+
     }
 
 

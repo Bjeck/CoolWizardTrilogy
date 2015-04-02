@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Card_Pickupable.cs" />
+     <Compile Include="Assets\Scripts\EnemyNameManager.cs" />
      <Compile Include="Assets\Scripts\ShaderScripts\CRTshaderScript.cs" />
      <Compile Include="Assets\Scripts\ShaderScripts\ShaderControlEnemyScript.cs" />
      <Compile Include="Assets\Scripts\ShaderScripts\ShaderControlFloorScript.cs" />
