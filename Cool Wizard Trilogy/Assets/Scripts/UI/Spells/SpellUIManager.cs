@@ -7,21 +7,16 @@ using System.Linq;
 public class SpellUIManager : MonoBehaviour {
 
     private static SpellUIManager _instance;
-
     public RectTransform spellPanel;
-
     public GameObject cardPrefab;
-
     public float cardWidthPct = 5;
-
-    public Vector2 cardStartPct = new Vector2(5f,5f);
-
-    public float cardTotalWidthPct = 10;
-
-    public float raiseSelectedCardPct = 1;
+    public Vector2 cardStartPct = new Vector2(5f, 5f);
+    public float cardTtWidthPct = 10;
+    public float raiseSelCardPct = 1;
+    public float cardWdtHgtRat = 1.5f;
 
 
-    private SpellManager manager = new SpellManager();
+    public SpellManager manager;
 
     private Dictionary<string, GameObject> cards = new Dictionary<string, GameObject>();
 
@@ -87,6 +82,9 @@ public class SpellUIManager : MonoBehaviour {
 
                 RectTransform cardTran = card.GetComponent<RectTransform>();
                 cardTran.SetParent(spellPanel);
+
+                card.GetComponent<Image>().sprite = manager.yourCards[cardName].image;
+
                 Button cardBut = card.GetComponent<Button>();
 
                 switch(cardName){
@@ -112,8 +110,8 @@ public class SpellUIManager : MonoBehaviour {
         }
                                                
         float cardWidth = ( Screen.width / 100 ) * cardWidthPct;
-        float cardPosIt = ((Screen.width / 100) * cardTotalWidthPct) / cards.Count;
-        float selCardRaise = (Screen.height / 100) * raiseSelectedCardPct;
+        float cardPosIt = ((Screen.width / 100) * cardTtWidthPct) / cards.Count;
+        float selCardRaise = (Screen.height / 100) * raiseSelCardPct;
         Vector2 cardMargin = new Vector2((Screen.width / 100) * cardStartPct.x, (Screen.height / 100) * cardStartPct.y);
 
         int q = 0;
@@ -130,7 +128,7 @@ public class SpellUIManager : MonoBehaviour {
             }
 
             cardTran.position = new Vector3((cardPosIt * q) + cardMargin.x, cardY, 0);
-            cardTran.sizeDelta = new Vector2(cardWidth, cardTran.rect.height);
+            cardTran.sizeDelta = new Vector2(cardWidth, cardWidth * cardWdtHgtRat);
 
             q++;
         }
