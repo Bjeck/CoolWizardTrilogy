@@ -7,6 +7,7 @@ public class SpellObjectScript : MonoBehaviour {
 	public Vector3 dir;
 	public float speed;
 	ParticleSystem spellSystem;
+	public int spellType;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,7 @@ public class SpellObjectScript : MonoBehaviour {
 		if(col.gameObject.tag != "Player"){
 			col.gameObject.GetComponent<Renderer>().material.shader = shaderToApply;
 			col.gameObject.AddComponent<ShaderControlSpellScript>();
+			SpellUIManager.instance.manager.DoSpell(spellType,col.gameObject);
 			Destroy(gameObject);
 		}
 	}
