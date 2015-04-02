@@ -34,11 +34,7 @@ public class playerMovement : MonoBehaviour {
 
         cardClicked = SpellUIManager.instance.cardClicked();
 
-		if (cardClicked != null) {
-			isTargeting = true;
-		}
-
-		if (isTargeting) { //updates the target cursor to mouse position and color to see range.
+		if (cardClicked != null) { //updates the target cursor to mouse position and color to see range.
 			
 			//Vector3 temp = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			//temp.z = -1f;

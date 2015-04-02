@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ public class SpellUIManager : MonoBehaviour {
 
     private SpellManager manager = new SpellManager();
 
-    private List<GameObject> cards = new List<GameObject>();
+    private Dictionary<string, GameObject> cards = new Dictionary<string, GameObject>();
+
 
     public static SpellUIManager instance
     {
@@ -53,32 +55,46 @@ public class SpellUIManager : MonoBehaviour {
         UpdateCardsUI();
     }
 
+
     public void UpdateCardsUI()
     {
         for(int i = cards.Count -1; i >= 0; i--)
         {
-            Destroy(cards[i]);
-            cards.RemoveAt(i);
+            string cardName = (cards.Keys.ToArray())[i];
+            if(!manager.yourCards.Keys.Contains(cardName))
+            {
+                Destroy(cards[cardName]);
+                cards.Remove(cardName);
+                i--;
+            }
+        }
+
+        foreach (string cardName in manager.yourCards.Keys)
+        {
+            if(!cards.ContainsKey(cardName))
+            {
+                GameObject card = Instantiate(cardPrefab);
+
+                RectTransform cardTran = card.GetComponent<RectTransform>();
+                cardTran.SetParent(spellPanel);
+
+                Button cardBut = card.GetComponent<Button>();
+                cardBut.onClick.AddListener(() => { ToggleSelectedCard(cardName); });
+                cards.Add(cardName, card);
+            }
         }
 
         float cardWidth = Screen.width / manager.yourCards.Count;
+        int q = 0;
 
-        for (int i = 0; i < manager.yourCards.Count; i++)
+        foreach(string cardName in cards.Keys)
         {
-            GameObject card = Instantiate(cardPrefab);
+            RectTransform cardTran = cards[cardName].GetComponent<RectTransform>();
 
-            RectTransform cardTran = card.GetComponent<RectTransform>();
+            cardTran.position = new Vector3(cardWidth * q, 100, 0);
+            cardTran.sizeDelta = new Vector2(cardWidth, cardTran.rect.height);
 
-            cardTran.position = new Vector3(cardWidth * i, 100, 0);
-
-            cardTran.SetParent(spellPanel);
-
-            string cardName = (manager.yourCards.Keys.ToList())[i];
-            
-            UnityEngine.UI.Button cardBut = card.GetComponent<UnityEngine.UI.Button>();
-            cardBut.onClick.AddListener(() => { ToggleSelectedCard(cardName); ToggleSelectedCard(cardName); });
-
-            cards.Add(card);
+            q++;
         }
     }
 

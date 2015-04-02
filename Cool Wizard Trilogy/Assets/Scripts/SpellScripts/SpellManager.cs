@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class SpellManager : MonoBehaviour {
+public class SpellManager {
 
 
     public Dictionary<string, Card> allCards = new Dictionary<string, Card>();
@@ -26,8 +25,6 @@ public class SpellManager : MonoBehaviour {
             }
         }
     }
-
-
 
 
     public void FoundNewCard(string cardName)
