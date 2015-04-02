@@ -57,9 +57,11 @@
      <Compile Include="Assets\Scripts\SpellObjectScript.cs" />
      <Compile Include="Assets\Scripts\SpellScripts\Card.cs" />
      <Compile Include="Assets\Scripts\SpellScripts\SpellManager.cs" />
+     <Compile Include="Assets\Scripts\SpellScripts\SpellManagerSpells.cs" />
      <Compile Include="Assets\Scripts\UI\Spells\SpellUIManager.cs" />
      <Compile Include="Assets\Scripts\cameraScript.cs" />
      <Compile Include="Assets\Scripts\enemyScript.cs" />
+     <Compile Include="Assets\Scripts\fireScript.cs" />
      <Compile Include="Assets\Scripts\playerMovement.cs" />
      <None Include="Assets\Shaders\FuckedupShader.shader" />
      <None Include="Assets\Shaders\crttest.shader" />

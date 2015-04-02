@@ -18,7 +18,7 @@ public class SpellUIManager : MonoBehaviour {
 
     public float cardTotalWidthPct = 10;
 
-    private SpellManager manager = new SpellManager();
+    public SpellManager manager = new SpellManager();
 
     private Dictionary<string, GameObject> cards = new Dictionary<string, GameObject>();
 
