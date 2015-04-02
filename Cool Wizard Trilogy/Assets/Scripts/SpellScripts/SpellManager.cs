@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public partial class SpellManager {
 
@@ -13,6 +14,7 @@ public partial class SpellManager {
 
 	public void ToggleSpell(string cardName)
     {
+        Debug.Log(cardName);
         if(ChosenSpell != null && ChosenSpell.name == cardName)
         {
             ChosenSpell = null;
@@ -21,6 +23,7 @@ public partial class SpellManager {
         {
             if (yourCards.ContainsKey(cardName))
             {
+                Debug.Log(cardName);
                 ChosenSpell = yourCards[cardName];
             }
         }
