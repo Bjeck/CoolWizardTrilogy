@@ -12,6 +12,12 @@ public class SpellUIManager : MonoBehaviour {
 
     public GameObject cardPrefab;
 
+    public float cardWidthPct = 5;
+
+    public float cardStartPct = 5;
+
+    public float cardTotalWidthPct = 10;
+
     private SpellManager manager = new SpellManager();
 
     private Dictionary<string, GameObject> cards = new Dictionary<string, GameObject>();
@@ -61,6 +67,7 @@ public class SpellUIManager : MonoBehaviour {
         for(int i = cards.Count -1; i >= 0; i--)
         {
             string cardName = (cards.Keys.ToArray())[i];
+
             if(!manager.yourCards.Keys.Contains(cardName))
             {
                 Destroy(cards[cardName]);
@@ -79,31 +86,26 @@ public class SpellUIManager : MonoBehaviour {
                 cardTran.SetParent(spellPanel);
 
                 Button cardBut = card.GetComponent<Button>();
-                cardBut.onClick.AddListener(() => { ToggleSelectedCard(cardName); });
+                cardBut.onClick.AddListener(() => { manager.ToggleSpell(cardName); });
                 cards.Add(cardName, card);
             }
         }
 
-        float cardWidth = Screen.width / manager.yourCards.Count;
-        int q = 0;
+        float cardWidth = ( Screen.width / 100 ) * cardWidthPct;
+        float cardPosIt = ((Screen.width / 100) * cardTotalWidthPct) / cards.Count;
+        float cardMargin = (Screen.width / 100) * cardStartPct;
 
+        int q = 0;
+        
         foreach(string cardName in cards.Keys)
         {
             RectTransform cardTran = cards[cardName].GetComponent<RectTransform>();
 
-            cardTran.position = new Vector3(cardWidth * q, 100, 0);
+            cardTran.position = new Vector3((cardPosIt * q) + cardMargin + (cardWidth / 2), 100, 0);
             cardTran.sizeDelta = new Vector2(cardWidth, cardTran.rect.height);
 
             q++;
         }
-    }
-
-
-    public void ToggleSelectedCard(string name)
-    {
-        print("hello");
-
-        manager.ToggleSpell(name);
     }
 
 
