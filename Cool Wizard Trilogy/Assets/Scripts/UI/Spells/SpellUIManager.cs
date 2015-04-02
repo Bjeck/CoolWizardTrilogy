@@ -15,10 +15,7 @@ public class SpellUIManager : MonoBehaviour {
     public float raiseSelCardPct = 1;
     public float cardWdtHgtRat = 1.5f;
 	
-	[HideInInspector]
 	public SpellManager manager;
-
-	public float raiseSelectedCardPct = 1;
 
     private Dictionary<string, GameObject> cards = new Dictionary<string, GameObject>();
 
@@ -51,7 +48,6 @@ public class SpellUIManager : MonoBehaviour {
                 Destroy(this.gameObject);
         }
 
-		manager = new SpellManager();
 		manager.MakeAllCards();
         manager.SetYourFirstCards();
 

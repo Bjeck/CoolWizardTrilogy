@@ -42,13 +42,13 @@ public partial class SpellManager : MonoBehaviour {
 
     public void MakeAllCards()
     {
-        allCards.Add("fire", new Card("fire", cardImages[0], 0));
-        allCards.Add("fire1", new Card("fire1", cardImages[1], 0));
-        allCards.Add("fire2", new Card("fire2", cardImages[2], 0));
-        allCards.Add("fire3", new Card("fire3", cardImages[3], 0));
-        allCards.Add("fire4", new Card("fire4", cardImages[4], 0));
-        allCards.Add("fire5", new Card("fire5", cardImages[5], 0));
-        allCards.Add("fire6", new Card("fire6", cardImages[6], 0));
+		allCards.Add("fire", new Card("fire", cardImages[0], 0));
+		allCards.Add("fire1", new Card("fire1", cardImages[1], 0));
+		allCards.Add("fire2", new Card("fire2", cardImages[2], 0));
+		allCards.Add("fire3", new Card("fire3", cardImages[3], 0));
+		allCards.Add("fire4", new Card("fire4", cardImages[4], 0));
+		allCards.Add("fire5", new Card("fire5", cardImages[5], 0));
+		allCards.Add("fire6", new Card("fire6", cardImages[6], 0));
     }
 
 
