@@ -4,6 +4,7 @@ using System.Collections;
 public class Card_Pickupable : MonoBehaviour {
 
 	public float rotationSpeed = 2f;
+	public string spellName = "FireBall";
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +21,7 @@ public class Card_Pickupable : MonoBehaviour {
 		if (col.gameObject.tag == "Player") {
 
 			//ADD CARD INSERT SCRIPT HERE
-
+			SpellUIManager.instance.manager.FoundNewCard(spellName);
 			Destroy(this.gameObject);
 		}
 	}

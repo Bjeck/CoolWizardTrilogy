@@ -13,11 +13,13 @@ public class SpellUIManager : MonoBehaviour {
     public Vector2 cardStartPct = new Vector2(5f, 5f);
     public float cardTtWidthPct = 10;
     public float raiseSelCardPct = 1;
-    public float cardWdtHgtRat = 1.5f;
+	public float cardWdtHgtRat = 1.5f;
+	public bool justClicked = false;
 	
 	public SpellManager manager;
 
     private Dictionary<string, GameObject> cards = new Dictionary<string, GameObject>();
+	public Dictionary<KeyCode, Card> hotkeys = new Dictionary<KeyCode, Card>();
 
 
     public static SpellUIManager instance
@@ -56,7 +58,49 @@ public class SpellUIManager : MonoBehaviour {
 
     void Update()
     {
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			if(cards.Count > 0){
+				manager.ToggleSpell((cards.Keys.ToList())[0]);
+			}
+		}
+		else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			if(cards.Count > 1){
+				manager.ToggleSpell((cards.Keys.ToList())[1]);
+			}
+		}
+		else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+			if(cards.Count > 2){
+				manager.ToggleSpell((cards.Keys.ToList())[2]);
+			}
+		}
+		else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+			if(cards.Count > 3){
+				manager.ToggleSpell((cards.Keys.ToList())[3]);
+			}
+		}
+		else if (Input.GetKeyDown (KeyCode.Alpha5)) {
+			if(cards.Count > 4){
+				manager.ToggleSpell((cards.Keys.ToList())[4]);
+			}
+		}
+		else if (Input.GetKeyDown (KeyCode.Alpha6)) {
+			if(cards.Count > 5){
+				manager.ToggleSpell((cards.Keys.ToList())[5]);
+			}
+		}
+		else if (Input.GetKeyDown (KeyCode.Alpha7)) {
+			if(cards.Count > 6){
+				manager.ToggleSpell((cards.Keys.ToList())[6]);
+			}
+		}
+		else if (Input.GetKeyDown (KeyCode.Alpha8)) {
+			if(cards.Count > 7){
+				manager.ToggleSpell((cards.Keys.ToList())[7]);
+			}
+		}
+
         UpdateCardsUI();
+		justClicked = false;
     }
 
 
@@ -73,8 +117,13 @@ public class SpellUIManager : MonoBehaviour {
                 i--;
             }
         }
+		List<string> cardNames = new List<string> ();
+		foreach (Card c in manager.yourCards.Values.ToList ()) {
+			cardNames.Add(c.name);
+		}
 
-        foreach (string cardName in manager.yourCards.Keys)
+
+		foreach (string cardName in cardNames)
         {
             if(!cards.ContainsKey(cardName))
             {
@@ -88,21 +137,24 @@ public class SpellUIManager : MonoBehaviour {
                 Button cardBut = card.GetComponent<Button>();
 
                 switch(cardName){
-                    case "fire":
-                        cardBut.onClick.AddListener(()=> { manager.ToggleSpell("fire"); });
+					case "FireBall":
+						cardBut.onClick.AddListener(()=> { manager.ToggleSpell("FireBall"); });
                         break;
-                    case "fire1":
-                        cardBut.onClick.AddListener(()=> { manager.ToggleSpell("fire1"); });
+					case "FreezeBlast":
+						cardBut.onClick.AddListener(()=> { manager.ToggleSpell("FreezeBlast"); });
                         break;
-                    case "fire2":
-                        cardBut.onClick.AddListener(()=> { manager.ToggleSpell("fire2"); });
+					case "GiantBomb":
+						cardBut.onClick.AddListener(()=> { manager.ToggleSpell("GiantBomb"); });
                         break;
-                    case "fire3":
-                        cardBut.onClick.AddListener(()=> { manager.ToggleSpell("fire3"); });
+					case "TransformObject":
+						cardBut.onClick.AddListener(()=> { manager.ToggleSpell("TransformObject"); });
                         break;
-                    case "fire4":
-                        cardBut.onClick.AddListener(()=> { manager.ToggleSpell("fire4"); });
-                        break;
+					case "RotateObject":
+						cardBut.onClick.AddListener(()=> { manager.ToggleSpell("RotateObject"); });
+						break;
+					case "ScaleObject":
+						cardBut.onClick.AddListener(()=> { manager.ToggleSpell("ScaleObject"); });
+						break;
                 }
 
                 cards.Add(cardName, card);
@@ -115,7 +167,6 @@ public class SpellUIManager : MonoBehaviour {
         Vector2 cardMargin = new Vector2((Screen.width / 100) * cardStartPct.x, (Screen.height / 100) * cardStartPct.y);
 
         int q = 0;
-        
         foreach(string cardName in cards.Keys)
         {
             RectTransform cardTran = cards[cardName].GetComponent<RectTransform>();
@@ -137,6 +188,7 @@ public class SpellUIManager : MonoBehaviour {
 
     public Card cardClicked()
     {
+		justClicked = true;
         if(manager.chosenSpell != null)
         {
             return manager.chosenSpell;

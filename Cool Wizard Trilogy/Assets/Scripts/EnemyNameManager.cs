@@ -10,6 +10,29 @@ public class EnemyNameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		FillNameList ();
+
+
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	}
+
+	public string GetName(){
+		int choo = Random.Range (0, names.Count);
+		string ret = names [choo];
+		names.Remove (ret);
+
+		if (names.Count == 0) {
+			FillNameList();
+		}
+		return ret;
+	}
+
+
+	void FillNameList(){
 		names.Add ("Jeff");
 		names.Add ("Dan Ryckert");
 		names.Add ("Drew Scanlon");
@@ -24,20 +47,7 @@ public class EnemyNameManager : MonoBehaviour {
 		names.Add ("RUN GFB");
 		names.Add ("Dave Lang");
 		names.Add ("Mike Tyson");
-
-
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	public string GetName(){
-		string ret = names [i];
-		i++;
-		return ret;
+		names.Add ("Yoshi");
 	}
 
 

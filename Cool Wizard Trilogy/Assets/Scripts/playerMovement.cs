@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class playerMovement : MonoBehaviour {
 
@@ -34,8 +35,10 @@ public class playerMovement : MonoBehaviour {
 
         cardClicked = SpellUIManager.instance.cardClicked();
 
+
 		if (cardClicked != null) { //updates the target cursor to mouse position and color to see range.
-			
+//			Debug.Log("CARD CLICKED "+cardClicked.name);
+
 			//Vector3 temp = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			//temp.z = -1f;
 			//targetCursor.transform.position = temp;
@@ -53,6 +56,12 @@ public class playerMovement : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Z)){
 			wvcScr.ChangeVisionState();
 		}
+
+
+		if (Input.GetKeyDown (KeyCode.U)) {
+			Application.LoadLevel(Application.loadedLevel);
+		}
+
 	}
 
 	//right now, just generic spell. include spell, probably, when we get there.
@@ -61,5 +70,6 @@ public class playerMovement : MonoBehaviour {
 		spellObject.transform.position = transform.position;
 		target.y = transform.position.y;
 		spellObject.GetComponent<SpellObjectScript> ().dir = (target - spellObject.transform.position).normalized;
+		spellObject.GetComponent<SpellObjectScript> ().spellName = cardClicked.name;
 	}
 }

@@ -14,6 +14,7 @@ public class cameraScript : MonoBehaviour {
 	public float camZThreshold = 2f;
 	float horiz;
 	float verti;
+	int camHI = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,27 @@ public class cameraScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKeyDown (KeyCode.C)) {
+			camHI++;
+			if(camHI > 3){ camHI = 0; }
+		}
+		if(camHI == 0){
+			camHeight = 10f;
+			camXOffSet = -3.24f;
+		}
+		else if(camHI == 1){
+			camHeight = 25f;
+			camXOffSet = -10f;
+		}
+		else if(camHI == 2){
+			camHeight = 50f;
+			camXOffSet = -20f;
+		}
+		else if(camHI == 3){
+			camHeight = 80f;
+			camXOffSet = -35f;
+		}
 
 		cameraPos = player.transform.position;
 

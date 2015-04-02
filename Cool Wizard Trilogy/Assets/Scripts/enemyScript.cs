@@ -22,7 +22,7 @@ public class enemyScript : MonoBehaviour {
 		nameText = GetComponentInChildren<TextMesh> ();
 		//Debug.Log (nameText);
 
-		nameText.text = transform.parent.gameObject.GetComponent<EnemyNameManager> ().GetName ();
+		nameText.text = GameObject.FindGameObjectWithTag ("EnemyNameManager").GetComponent<EnemyNameManager> ().GetName ();
 		//Debug.Log (nameText.text);
 	}
 	
@@ -41,7 +41,7 @@ public class enemyScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision c){
-		if (c.gameObject.tag == "Player") {
+		if (c.gameObject.tag == "Player" && wvcScr.inWizardVision) {
 
 			rig.AddForce((transform.position-player.transform.position)*40f,ForceMode.VelocityChange);
 			c.gameObject.GetComponent<Rigidbody>().AddForce((player.transform.position - transform.position)*40f,ForceMode.VelocityChange);

@@ -8,11 +8,11 @@ public class SpellObjectScript : MonoBehaviour {
 	public float speed;
 	ParticleSystem spellSystem;
 	public int spellType;
+	public string spellName;
 
 	// Use this for initialization
 	void Start () {
 		spellSystem = GetComponent<ParticleSystem> ();
-	
 	}
 	
 	// Update is called once per frame
@@ -26,10 +26,10 @@ public class SpellObjectScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		if(col.gameObject.tag != "Player"){
+		if(col.gameObject.tag != "Player" && col.gameObject.tag != "floor" && col.gameObject.tag != "boundary" && col.gameObject.tag != "spellObject"){
 			col.gameObject.GetComponent<Renderer>().material.shader = shaderToApply;
 			col.gameObject.AddComponent<ShaderControlSpellScript>();
-			SpellUIManager.instance.manager.DoSpell(spellType,col.gameObject);
+			SpellUIManager.instance.manager.DoSpell(spellName,col.gameObject);
 			Destroy(gameObject);
 		}
 	}
