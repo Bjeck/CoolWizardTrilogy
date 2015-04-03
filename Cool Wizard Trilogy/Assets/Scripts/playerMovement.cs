@@ -18,6 +18,7 @@ public class playerMovement : MonoBehaviour {
 	public float spellSpeed;
     Card cardClicked;
 
+
 	// Use this for initialization
 	void Start () {
 		rigbody = GetComponent<Rigidbody> ();

@@ -79,7 +79,7 @@
          float4 frag(vertexOutput input) : COLOR
          {
         //     float4 coloor = float4(1,1,0,1);
-            return float4(_DISPVALUE*(_XPOS*0.05),_DISPVALUE*(_YPOS*0.05),_DISPVALUE*(_ZPOS*0.05),1);;
+            return float4(_DISPVALUE*(_XPOS*0.1),_DISPVALUE*(_YPOS*0.1),_DISPVALUE*(_ZPOS*0.1),1);;
            // return output;
             
          }

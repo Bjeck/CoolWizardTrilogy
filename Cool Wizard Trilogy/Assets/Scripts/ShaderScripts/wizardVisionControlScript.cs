@@ -22,15 +22,37 @@ public class wizardVisionControlScript : MonoBehaviour {
 	float ridiculousTimer = 0f;
 	float dispValGoal;
 
-	//public AudioSource sound;
+	bool inBombMode = false;
+	bool bombShouldTrigger = false;
+	bool bombWindupTrigger = false;
+
+	public AudioSource saintsRowTheme;
+	public AudioSource wizardVisionSound;
+
+	
+	public AudioSource[] imawizardSounds;
+	public bool hasIntroed = false;
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (bombShouldTrigger) {
+			inWizardVision = true;
+			inBombMode = true;
+			GoRidiculous();
+			bombShouldTrigger = false;
+			StartCoroutine(bombEffect(28.5f));
+		}
+
+		if (bombWindupTrigger) {
+			inWizardVision = true;
+			GoRidiculous();
+			bombWindupTrigger = false;
+			StartCoroutine(bombEffect(0.4f));
+		}
 	
 
 		if (shouldSwitch) {
@@ -68,15 +90,14 @@ public class wizardVisionControlScript : MonoBehaviour {
 					ridiculousTimer = Random.Range(0.5f,2f);
 				}
 
+
 				int CRTDecider = Random.Range(0,4);
 				if(CRTDecider == 0){
 					Camera.main.GetComponent<CRTshaderScript> ().enabled = true;
 				}
-
 				//sound.Stop ();
 				//sound.pitch = 1; sound.pitch += Random.Range(-0.2f,0.2f);
 				//sound.Play ();
-
 			}
 			else{
 				dispVal = Mathf.Lerp(dispVal,dispValGoal,0.01f);
@@ -115,20 +136,95 @@ public class wizardVisionControlScript : MonoBehaviour {
 		zVal = 0;
 		randomizeEverything = false;
 		Camera.main.GetComponent<CRTshaderScript> ().enabled = false;
-		//sound.Stop();
+		wizardVisionSound.Stop ();
 
 	}
 
 
-		public void ChangeVisionState(){
-			inWizardVision = !inWizardVision;
-			//Debug.Log ("Change vision state "+inWizardVision);
-			if(inWizardVision){
-				GoRidiculous();
+	public void ChangeVisionState(){
+		if (!inBombMode) {
+			if(hasIntroed){
+				inWizardVision = !inWizardVision;
+				//Debug.Log ("Change vision state "+inWizardVision);
+				if(inWizardVision){
+					wizardVisionSound.Play ();
+					GoRidiculous();
+				}
+				else{
+					DeactivateWizardVision();
+				}
+				shouldSwitch = true;
 			}
 			else{
-				DeactivateWizardVision();
+				StartCoroutine(ImAWizIntro(1.5f));
 			}
-			shouldSwitch = true;
 		}
+	}
+
+	public void ChangeVisionForBomb(){
+		inWizardVision = !inWizardVision;
+		//Debug.Log ("Change vision state "+inWizardVision);
+		if(inWizardVision){
+			GoRidiculous();
+		}
+		else{
+			DeactivateWizardVision();
+		}
+		shouldSwitch = true;
+	}
+
+
+
+	public IEnumerator ImAWizIntro(float time){
+		imawizardSounds[0].Play();
+		while (time > 0) {
+			time -= Time.deltaTime;
+			yield return 0;
+		}
+		hasIntroed = true;
+		ChangeVisionState ();
+	}
+
+
+
+
+	public void GiantBomb(){
+		//sound starts
+		saintsRowTheme.Play ();
+		StartCoroutine (bombWindUp (2.6f));
+		//timer runs 2.5 seconds until bomb effect triggers (wizardvision)
+		//trigger bombeffect, have it run again, this time longer and wizardvision is turned off
+
+	}
+
+	IEnumerator bombWindUp(float time){
+		float microTimer = 0.0f;
+		while (time > 0) {
+			if(microTimer <= 0 && time > .637f){
+				bombWindupTrigger = true;
+				microTimer = 0.637f;
+				//GO FOR 0.4 SECONDS
+			}
+
+			microTimer -= Time.deltaTime;
+			time -= Time.deltaTime;
+			yield return 0;
+		}
+		bombShouldTrigger = true;
+	}
+
+	IEnumerator bombEffect(float time){
+		while (time > 0) {
+			shouldSwitch = true;
+			time -= Time.deltaTime;
+			yield return 0;
+		}
+		//DeactivateWizardVision ();
+		inBombMode = false;
+		ChangeVisionForBomb ();
+	}
+
+
+
+
 }

@@ -11,17 +11,20 @@ public class EnemyNameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		FillNameList ();
-
-
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (names.Count <= 0) {
+			FillNameList ();
+		}
 	}
 
 	public string GetName(){
 		int choo = Random.Range (0, names.Count);
+		if (choo == names.Count) {
+			choo -= 1;
+		}
 		string ret = names [choo];
 		names.Remove (ret);
 

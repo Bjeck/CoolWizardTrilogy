@@ -155,6 +155,9 @@ public class SpellUIManager : MonoBehaviour {
 					case "ScaleObject":
 						cardBut.onClick.AddListener(()=> { manager.ToggleSpell("ScaleObject"); });
 						break;
+					case "Push":
+						cardBut.onClick.AddListener(()=> { manager.ToggleSpell("Push"); });
+						break;
                 }
 
                 cards.Add(cardName, card);

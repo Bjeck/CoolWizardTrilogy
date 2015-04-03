@@ -51,6 +51,7 @@ public partial class SpellManager : MonoBehaviour {
 		allCards.Add("TransformObject", new Card("TransformObject", cardImages[3], 0));
 		allCards.Add("RotateObject", new Card("RotateObject", cardImages[4], 0));
 		allCards.Add("ScaleObject", new Card("ScaleObject", cardImages[5], 0));
+		allCards.Add("Push", new Card("Push", cardImages[6], 0));
 		//allCards.Add("fire6", new Card("fire6", cardImages[6], 0));
     }
 

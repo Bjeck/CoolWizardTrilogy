@@ -30,7 +30,7 @@ public class cameraScript : MonoBehaviour {
 		}
 		if(camHI == 0){
 			camHeight = 10f;
-			camXOffSet = -3.24f;
+			camXOffSet = -5f;
 		}
 		else if(camHI == 1){
 			camHeight = 25f;

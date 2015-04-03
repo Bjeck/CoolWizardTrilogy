@@ -36,6 +36,9 @@ public partial class SpellManager : MonoBehaviour {
 		case "ScaleObject":
 			ScaleObject(objectToHit);
 			break;
+		case "Push":
+			Push(objectToHit);
+			break;
 		default:
 			Debug.Log("no spell with that number");
 			break;
@@ -68,7 +71,8 @@ public partial class SpellManager : MonoBehaviour {
 	void GiantBomb(GameObject objectToHit){
 		//Destroy object
 		//DROP A BOMB ON IT
-		Destroy (objectToHit); 
+		GameObject.FindGameObjectWithTag ("wizardVisionController").GetComponent<wizardVisionControlScript> ().GiantBomb ();
+		//Destroy (objectToHit); 
 	}
 
 
@@ -105,6 +109,17 @@ public partial class SpellManager : MonoBehaviour {
 
 	void ScaleObject(GameObject objectToHit){
 		objectToHit.transform.localScale = new Vector3 (Random.Range (0.4f, 1.9f), Random.Range (0.4f, 1.9f), Random.Range (0.4f, 1.9f));
+	}
+
+	void Push(GameObject objecToHit){
+		Debug.Log("HAS");
+		if (objecToHit.GetComponent<Rigidbody> ()) {
+			Debug.Log("HAS RIGIDBODY");
+			Vector3 pushForce = new Vector3(Random.Range(-60f,60f),0f, Random.Range(-60f,60f));
+			objecToHit.GetComponent<Rigidbody>().AddForce(pushForce, ForceMode.VelocityChange);
+			Debug.Log(pushForce);
+		}
+
 	}
 
 	void BlackHole(GameObject objectToHit){

@@ -52,9 +52,9 @@ public class ShaderControlPickupableObjectScript : MonoBehaviour {
 
 		if (wvcScr.inWizardVision) {
 			GetComponent<Renderer> ().material.SetFloat ("_DISPVALUE", 5);
-			GetComponent<Renderer> ().material.SetFloat ("_XPOS", wvcScr.xVal);
-			GetComponent<Renderer> ().material.SetFloat ("_YPOS", wvcScr.yVal);
-			GetComponent<Renderer> ().material.SetFloat ("_ZPOS", wvcScr.zVal);
+			GetComponent<Renderer> ().material.SetFloat ("_XPOS", wvcScr.xVal*2);
+			GetComponent<Renderer> ().material.SetFloat ("_YPOS", wvcScr.yVal*2);
+			GetComponent<Renderer> ().material.SetFloat ("_ZPOS", wvcScr.zVal*2);
 			
 			//it's dumb to do this every frame.
 			GetComponent<Renderer> ().material.SetFloat ("_MOVE", 0);
