@@ -11,7 +11,6 @@ public class playerMovement : MonoBehaviour {
 	public GameObject wizardVisionObj;
 	wizardVisionControlScript wvcScr;
 
-	bool isTargeting = false;
 	public GameObject targetCursor;
 	Vector3 spellTarget;
 	GameObject spellObject;
@@ -48,7 +47,6 @@ public class playerMovement : MonoBehaviour {
 				RaycastHit hit;
 				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 100f)) {
 					CastSpell(hit.point);
-					isTargeting = false;
 				}
 			}
 		}
@@ -60,7 +58,7 @@ public class playerMovement : MonoBehaviour {
 
 
 		if (Input.GetKeyDown (KeyCode.U)) {
-			Application.LoadLevel(Application.loadedLevel);
+			Application.LoadLevel(Application.loadedLevelName);
 		}
 
 	}

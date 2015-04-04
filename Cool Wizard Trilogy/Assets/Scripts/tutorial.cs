@@ -4,7 +4,9 @@ using System.Collections;
 public class tutorial : MonoBehaviour {
 
 	public GameObject tutObject;
-	bool tutActive = true;
+	public GameObject creditsObject;
+	bool credActive = false;
+	public bool tutActive = true;
 
 	// Use this for initialization
 	void Start () {
@@ -29,4 +31,29 @@ public class tutorial : MonoBehaviour {
 			Time.timeScale = 1;
 		}
 	}
+
+
+	public void ChangeCreditsState(){
+		if (credActive) {
+			CreditsDeactivate ();
+		} else {
+			CreditsActivate();
+		}
+	}
+
+
+	public void CreditsActivate(){
+		creditsObject.SetActive (true);
+		credActive = true;
+	}
+	public void CreditsDeactivate(){
+		creditsObject.SetActive (false);
+		credActive = false;
+	}
+
+	public void QuitGame(){
+		Application.Quit ();
+	}
+
+
 }

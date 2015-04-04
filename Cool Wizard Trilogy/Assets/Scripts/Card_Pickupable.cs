@@ -6,6 +6,7 @@ public class Card_Pickupable : MonoBehaviour {
 	public float rotationSpeed = 2f;
 	public string spellName = "FireBall";
 
+
 	// Use this for initialization
 	void Start () {
 	

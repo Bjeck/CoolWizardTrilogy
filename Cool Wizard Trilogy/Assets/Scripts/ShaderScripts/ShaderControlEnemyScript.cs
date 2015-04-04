@@ -8,7 +8,7 @@ public class ShaderControlEnemyScript : MonoBehaviour {
 	wizardVisionControlScript wvcScr;
 
 	bool switchShader = false;
-	float randomTimer = 0f;
+	float randomTimer = 5f;
 	bool glitchCard = false;
 
 	//public float limit = 5;
@@ -28,7 +28,7 @@ public class ShaderControlEnemyScript : MonoBehaviour {
 		
 		//it's dumb to do this every frame.
 		GetComponent<Renderer> ().material.SetFloat ("_MOVE", 0);
-	
+		randomTimer = Random.Range (1f, 8f);
 	}
 	
 	// Update is called once per frame

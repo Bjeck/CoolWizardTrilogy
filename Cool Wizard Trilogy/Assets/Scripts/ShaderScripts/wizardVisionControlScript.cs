@@ -27,18 +27,37 @@ public class wizardVisionControlScript : MonoBehaviour {
 	bool bombWindupTrigger = false;
 
 	public AudioSource saintsRowTheme;
-	public AudioSource wizardVisionSound;
+	public AudioSource[] wizardVisionSounds;
+	public AudioSource[] wizardGlitchSounds;
+	AudioSource currentlyPlayingSound;
 
+	public AudioSource BGMusic;
+	bool hasPlayedIntroMusic = false;
+	public AudioSource BGMusic2;
+	AudioSource musicPlaying;
 	
 	public AudioSource[] imawizardSounds;
 	public bool hasIntroed = false;
 
 	// Use this for initialization
 	void Start () {
+		musicPlaying = BGMusic;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (!SpellUIManager.instance.gameObject.GetComponent<tutorial> ().tutActive && !musicPlaying.isPlaying) {
+			if (!inWizardVision) {
+				SelectMusicToPlay();
+				musicPlaying.Play();
+			}
+		}
+		if (inWizardVision && musicPlaying.isPlaying) {
+			musicPlaying.Stop ();
+		}
+
+
+
 		if (bombShouldTrigger) {
 			inWizardVision = true;
 			inBombMode = true;
@@ -95,6 +114,27 @@ public class wizardVisionControlScript : MonoBehaviour {
 				if(CRTDecider == 0){
 					Camera.main.GetComponent<CRTshaderScript> ().enabled = true;
 				}
+
+				if(!inBombMode){
+					if(mode == 2){
+						if(currentlyPlayingSound != null){
+							currentlyPlayingSound.Stop();
+						}
+
+						int soundChooser = Random.Range(0,wizardGlitchSounds.Length);
+						currentlyPlayingSound = wizardGlitchSounds[soundChooser];
+						currentlyPlayingSound.Play();
+					}
+					else{
+						if(currentlyPlayingSound != null){
+							currentlyPlayingSound.Stop();
+						}
+						int soundChooser = Random.Range(0,wizardVisionSounds.Length);
+						currentlyPlayingSound = wizardVisionSounds[soundChooser];
+						currentlyPlayingSound.Play();
+					}
+				}
+
 				//sound.Stop ();
 				//sound.pitch = 1; sound.pitch += Random.Range(-0.2f,0.2f);
 				//sound.Play ();
@@ -136,7 +176,9 @@ public class wizardVisionControlScript : MonoBehaviour {
 		zVal = 0;
 		randomizeEverything = false;
 		Camera.main.GetComponent<CRTshaderScript> ().enabled = false;
-		wizardVisionSound.Stop ();
+		if(currentlyPlayingSound != null){
+			currentlyPlayingSound.Stop();
+		}
 
 	}
 
@@ -147,7 +189,6 @@ public class wizardVisionControlScript : MonoBehaviour {
 				inWizardVision = !inWizardVision;
 				//Debug.Log ("Change vision state "+inWizardVision);
 				if(inWizardVision){
-					wizardVisionSound.Play ();
 					GoRidiculous();
 				}
 				else{
@@ -156,6 +197,7 @@ public class wizardVisionControlScript : MonoBehaviour {
 				shouldSwitch = true;
 			}
 			else{
+				musicPlaying.Stop ();
 				StartCoroutine(ImAWizIntro(1.5f));
 			}
 		}
@@ -178,6 +220,7 @@ public class wizardVisionControlScript : MonoBehaviour {
 	public IEnumerator ImAWizIntro(float time){
 		imawizardSounds[0].Play();
 		while (time > 0) {
+			musicPlaying.Stop ();
 			time -= Time.deltaTime;
 			yield return 0;
 		}
@@ -225,6 +268,15 @@ public class wizardVisionControlScript : MonoBehaviour {
 	}
 
 
+
+	void SelectMusicToPlay(){
+		if (hasPlayedIntroMusic) {
+			musicPlaying = BGMusic2;
+		} else {
+			musicPlaying = BGMusic;
+			hasPlayedIntroMusic = true;
+		}
+	}
 
 
 }

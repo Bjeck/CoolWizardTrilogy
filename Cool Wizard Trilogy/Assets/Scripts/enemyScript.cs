@@ -41,7 +41,7 @@ public class enemyScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision c){
-		if (c.gameObject.tag == "Player" && wvcScr.inWizardVision) {
+		if (c.gameObject.tag == "Player") {
 
 			rig.AddForce((transform.position-player.transform.position)*40f,ForceMode.VelocityChange);
 			c.gameObject.GetComponent<Rigidbody>().AddForce((player.transform.position - transform.position)*40f,ForceMode.VelocityChange);

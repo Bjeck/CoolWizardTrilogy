@@ -9,6 +9,7 @@ public class SpellObjectScript : MonoBehaviour {
 	ParticleSystem spellSystem;
 	public int spellType;
 	public string spellName;
+	public AudioSource spellSoundToGive;
 
 	// Use this for initialization
 	void Start () {
@@ -29,8 +30,9 @@ public class SpellObjectScript : MonoBehaviour {
 		if(col.gameObject.tag != "Player" && col.gameObject.tag != "floor" && col.gameObject.tag != "boundary" && col.gameObject.tag != "spellObject"){
 			col.gameObject.GetComponent<Renderer>().material.shader = shaderToApply;
 			col.gameObject.AddComponent<ShaderControlSpellScript>();
+			col.gameObject.GetComponent<ShaderControlSpellScript>().spellSound = spellSoundToGive;
 			SpellUIManager.instance.manager.DoSpell(spellName,col.gameObject);
-			Destroy(gameObject);
+			Destroy(this.gameObject);
 		}
 	}
 

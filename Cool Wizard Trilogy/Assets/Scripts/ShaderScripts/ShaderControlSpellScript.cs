@@ -6,8 +6,7 @@ public class ShaderControlSpellScript : MonoBehaviour {
 
 	GameObject wizardControlObj;
 	wizardVisionControlScript wvcScr;
-
-	bool switchShader = false;
+	public AudioSource spellSound;
 
 	float timer = 0.5f;
 
@@ -23,14 +22,20 @@ public class ShaderControlSpellScript : MonoBehaviour {
 		GetComponent<Renderer> ().material.SetFloat ("_DISPVALUE", 10);
 		GetComponent<Renderer> ().material.SetFloat ("_MOVE", 1);
 		timer = Random.Range (0.3f, 0.7f);
+
+
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (timer < 0) {
 			GetComponent<Renderer>().material.shader = wvcScr.normalShader;
 			Destroy(GetComponent<ShaderControlSpellScript>());
+		}
+		if (spellSound != null && !spellSound.isPlaying) {
+			spellSound.Play ();
 		}
 		
 			GetComponent<Renderer>().material.SetFloat("_DISPVALUE",wvcScr.dispVal);

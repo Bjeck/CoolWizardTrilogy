@@ -8,8 +8,10 @@ public class ShaderControlPickupableObjectScript : MonoBehaviour {
 	wizardVisionControlScript wvcScr;
 
 	bool switchShader = false;
-	float randomTimer = 0f;
+	float randomTimer = 5f;
 	bool glitchCard = false;
+	public AudioSource[] glitchSounds;
+	AudioSource currentlyPlayingSound;
 
 	//public float limit = 5;
 	//public float yval = 0;
@@ -28,7 +30,7 @@ public class ShaderControlPickupableObjectScript : MonoBehaviour {
 		
 		//it's dumb to do this every frame.
 		GetComponent<Renderer> ().material.SetFloat ("_MOVE", 0);
-	
+		randomTimer = Random.Range (1f, 8f);
 	}
 	
 	// Update is called once per frame
@@ -67,7 +69,14 @@ public class ShaderControlPickupableObjectScript : MonoBehaviour {
 				GetComponent<Renderer> ().material.SetFloat ("_XPOS", Random.Range(-1f,1f));
 				GetComponent<Renderer> ().material.SetFloat ("_YPOS", Random.Range(-1f,1f));
 				GetComponent<Renderer> ().material.SetFloat ("_ZPOS", Random.Range(-1f,1f));
+
+
+
+
 				if (randomTimer <= 0) {
+					if(currentlyPlayingSound != null){
+						currentlyPlayingSound.Stop();
+					}
 					glitchCard = false;
 					GetComponent<Renderer> ().material.shader = wvcScr.normalShader;
 					GetComponent<Renderer> ().material.SetFloat ("_DISPVALUE", 5);
@@ -77,6 +86,10 @@ public class ShaderControlPickupableObjectScript : MonoBehaviour {
 			} else {
 				randomTimer -= Time.deltaTime;
 				if (randomTimer <= 0) {
+					int soundChooser = Random.Range(0,glitchSounds.Length);
+					currentlyPlayingSound = glitchSounds[soundChooser];
+					currentlyPlayingSound.Play();
+
 					glitchCard = true;
 					GetComponent<Renderer> ().material.shader = wvcScr.pickupableObjectShader;
 					randomTimer = Random.Range (0.1f, 0.2f);

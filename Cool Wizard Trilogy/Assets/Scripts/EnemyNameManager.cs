@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class EnemyNameManager : MonoBehaviour {
 
 	List<string> names = new List<string>();
-	int i = 0;
 
 
 	// Use this for initialization
@@ -37,12 +36,12 @@ public class EnemyNameManager : MonoBehaviour {
 
 	void FillNameList(){
 		names.Add ("Jeff");
-		names.Add ("Dan Ryckert");
-		names.Add ("Drew Scanlon");
+		names.Add ("Dan");
+		names.Add ("Drew");
 		names.Add ("Danny O'Dwyer");
-		names.Add ("Brad Shoemaker");
-		names.Add ("Vinny Caravella");
-		names.Add ("Alex Navarro");
+		names.Add ("Brad");
+		names.Add ("Vinny");
+		names.Add ("Alex");
 		names.Add ("Helicopter");
 		names.Add ("Revolver Ocelot");
 		names.Add ("Gamebomb.ru");
@@ -51,6 +50,13 @@ public class EnemyNameManager : MonoBehaviour {
 		names.Add ("Dave Lang");
 		names.Add ("Mike Tyson");
 		names.Add ("Yoshi");
+		names.Add ("Mary Kish");
+		names.Add ("Brad Muir");
+		names.Add ("Rorie");
+		names.Add ("Jason");
+		names.Add ("John T. Drake");
+		names.Add ("Eric Pope");
+		names.Add ("Patrick Klepek");
 	}
 
 

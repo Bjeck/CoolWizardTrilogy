@@ -78,7 +78,7 @@ public partial class SpellManager : MonoBehaviour {
 
 	void TransformObject(GameObject objectToHit){
 		//transform into somehting else
-		int objectChooser = Random.Range (0, 4); 
+		int objectChooser = Random.Range (0, 3); 
 		GameObject objectToSpawn = new GameObject();
 		Vector3 pos = objectToHit.transform.position;
 		switch (objectChooser) {
@@ -90,10 +90,6 @@ public partial class SpellManager : MonoBehaviour {
 			pos.y = 1;
 			break;
 		case 2:
-			objectToSpawn = (GameObject)Instantiate(Resources.Load("Card_Pickupable",typeof(GameObject)));
-			pos.y = 1;
-			break;
-		case 3:
 			objectToSpawn = (GameObject)Instantiate(Resources.Load("Cube_large",typeof(GameObject)));
 			break;
 		}
@@ -102,13 +98,19 @@ public partial class SpellManager : MonoBehaviour {
 	}
 
 	void RotateObject(GameObject objectToHit){
-		if(objectToHit.tag != "Enemy"){
+		if (objectToHit.tag == "Enemy") {
+			objectToHit.transform.Rotate (0f, 0f, Random.Range (0, 360f));
+		} 
+		else if(objectToHit.tag == "Card_Pickupable"){
+			objectToHit.transform.Rotate (0f, 0f, Random.Range (0, 360f));
+		}
+		else {
 			objectToHit.transform.Rotate (Random.Range (0, 360f), Random.Range (0, 360f), Random.Range (0, 360f));
 		}
 	}
 
 	void ScaleObject(GameObject objectToHit){
-		objectToHit.transform.localScale = new Vector3 (Random.Range (0.4f, 1.9f), Random.Range (0.4f, 1.9f), Random.Range (0.4f, 1.9f));
+		objectToHit.transform.localScale = new Vector3 (Random.Range (0.4f, 10.9f), Random.Range (0.4f, 10.9f), Random.Range (0.4f, 10.9f));
 	}
 
 	void Push(GameObject objecToHit){
